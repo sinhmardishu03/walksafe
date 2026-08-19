@@ -33,12 +33,15 @@ export default function TrustedCirclePage() {
   const [notifyOnCheck, setNotifyOnCheck] = useState(true);
   const [notifyOnSOS, setNotifyOnSOS] = useState(true);
 
-  useEffect(() => {
-    const unsub = safetyStore.subscribe(() => {
-      setContacts([...safetyStore.getContacts()]);
-    });
-    return unsub;
-  }, []);
+ useEffect(() => {
+  const unsubscribe = safetyStore.subscribe(() => {
+    setContacts([...safetyStore.getContacts()]);
+  });
+
+  return () => {
+    unsubscribe();
+  };
+}, []);
 
   const handleAddContact = (e: React.FormEvent) => {
     e.preventDefault();

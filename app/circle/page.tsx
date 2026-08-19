@@ -39,8 +39,8 @@ export default function TrustedCirclePage() {
   });
 
   return () => {
-    unsubscribe();
-  };
+  unsubscribe();
+};
 }, []);
 
   const handleAddContact = (e: React.FormEvent) => {
